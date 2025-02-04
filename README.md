@@ -54,3 +54,23 @@ uvicorn app.main:app --reload
 5. 기본 Flower 모델 (models/flower.py) 구현 
 6. 마이그레이션 생성 및 적용 (alembic)
 7. FastAPI 기본 라우트 (main.py) 추가 및 서버 실행 테스트
+
+## 📝 2일 차 진행 내용
+
+### ✅ CRUD 기능 구현
+1. SQLAlchemy ORM을 사용한 CRUD 함수 (crud.py) 작성 
+   - 꽃 정보 추가 (create_flower)
+   - 특정 꽃 조회 (get_flower)
+   - 꽃 목록 조회 (get_flowers)
+   - 꽃 정보 수정 (update_flower)
+   - 꽃 삭제 (delete_flower)
+
+2. Pydantic을 활용한 데이터 유효성 검사 (schemas.py)
+3. FastAPI 엔드포인트 (api/flower.py) 추가 
+   - POST /flowers/ - 꽃 추가 
+   - GET /flowers/ - 꽃 목록 조회 with 페이징 
+   - GET /flowers/{id} - 특정 꽃 조회 
+   - PUT /flowers/{id} - 꽃 정보 수정 
+   - DELETE /flowers/{id} - 꽃 삭제
+4. FastAPI 메인 파일 (main.py)에서 API 라우터 등록 
+5. Postman 및 Swagger UI를 활용한 API 테스트
