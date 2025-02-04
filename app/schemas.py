@@ -18,4 +18,4 @@ class FlowerResponse(FlowerBase):
     id: int
 
     class Config:
-        orm_mode = True  # SQLAlchemy 모델과 호환
+        from_attributes = True
