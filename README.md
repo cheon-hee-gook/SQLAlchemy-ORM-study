@@ -74,3 +74,31 @@ uvicorn app.main:app --reload
    - DELETE /flowers/{id} - 꽃 삭제
 4. FastAPI 메인 파일 (main.py)에서 API 라우터 등록 
 5. Postman 및 Swagger UI를 활용한 API 테스트
+
+## 📝 3일 차 진행 내용
+### ✅ 관계형 데이터 모델링
+1. 1:N 관계 (Category - Flower) 추가
+   - Category 모델 (models/category.py) 생성 
+   - Flower 모델에 category_id 추가 (models/flower.py 수정)
+   - SQLAlchemy의 relationship()을 활용하여 관계 설정 
+   - Alembic 마이그레이션 생성 및 적용
+2. N:M 관계 (Flower - 여러 Category) 추가
+   - flower_category 중간 테이블 추가 (models/flower_category.py)
+   - Flower 및 Category 모델에 secondary 관계 추가 
+   - Alembic 마이그레이션 생성 및 적용
+3. CRUD 기능 수정
+   - FlowerCreate 및 FlowerUpdate에 category_ids 추가 (schemas.py 수정)
+   - create_flower()에서 category_ids 처리 (crud.py 수정)
+   - update_flower()에서 카테고리 변경 가능하도록 수정 (crud.py 수정)
+4. API 엔드포인트 수정
+   - POST /flowers/ - 꽃 추가 시 카테고리 연결 가능 
+   - PUT /flowers/{id} - 꽃 수정 시 카테고리 변경 가능
+5. 쿼리 최적화 (joinedload) 적용
+   - 꽃을 조회할 때 카테고리 정보도 함께 가져오도록 get_flower_with_category() 구현
+6. 테스트 진행
+   - POST /categories/ - 카테고리 추가 
+   - GET /categories/ - 카테고리 목록 조회 
+   - POST /flowers/ - 꽃 추가 (카테고리 포함 O/X)
+   - GET /flowers/{id} - 특정 꽃 조회 (카테고리 포함 확인)
+   - PUT /flowers/{id} - 꽃 정보 수정 (카테고리 변경 O/X)
+   - DELETE /flowers/{id} - 꽃 삭제
